@@ -11,15 +11,20 @@ import io.reactivex.Single;
 public class Movie {
     private final ActorsService actorsService;
     private String title;
+    private String id;
 
-
-    public Movie(ActorsService actorsService, String title) {
+    public Movie(ActorsService actorsService, String title, String id) {
         this.title = title;
+        this.id = id;
         this.actorsService = actorsService;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Single<List<String>> getActors() {

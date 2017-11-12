@@ -27,4 +27,10 @@ public class MoviesApiRepository implements MoviesRepository {
                 .map(x -> movieApiMapper.toMovie(x))
                 .toList();
     }
+
+    @Override
+    public Single<Movie> getMovie(String id) {
+        return null;
+    }
+
 }

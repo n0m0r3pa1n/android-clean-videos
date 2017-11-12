@@ -15,7 +15,7 @@ public class MovieFactory {
         this.actorsService = actorsService;
     }
 
-    public Movie toMovie(String title) {
-        return new Movie(actorsService, title);
+    public Movie toMovie(String title, String id) {
+        return new Movie(actorsService, title, id);
     }
 }

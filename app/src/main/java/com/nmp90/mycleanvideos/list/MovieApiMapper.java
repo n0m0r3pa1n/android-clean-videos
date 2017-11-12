@@ -16,6 +16,6 @@ public class MovieApiMapper {
     }
 
     public Movie toMovie(MovieJson movieJson) {
-        return movieFactory.toMovie(movieJson.getTitle());
+        return movieFactory.toMovie(movieJson.getTitle(), movieJson.getImdbID());
     }
 }

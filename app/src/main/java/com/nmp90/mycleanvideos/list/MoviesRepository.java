@@ -10,4 +10,6 @@ import io.reactivex.Single;
 
 public interface MoviesRepository {
     Single<List<Movie>> getMovies(String search);
+
+    Single<Movie> getMovie(String id);
 }
