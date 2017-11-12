@@ -8,6 +8,8 @@ import android.widget.EditText;
 import com.nmp90.mycleanvideos.R;
 import com.nmp90.mycleanvideos.utils.InjectHelper;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MoviesPresenter.View {
@@ -30,7 +32,19 @@ public class MainActivity extends AppCompatActivity implements MoviesPresenter.V
     }
 
     @Override
-    public void showMovies() {
+    protected void onResume() {
+        super.onResume();
+        moviesPresenter.startPresenting(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        moviesPresenter.stopPresenting();
+    }
+
+    @Override
+    public void showMovies(List<Movie> movies) {
 
     }
 }
