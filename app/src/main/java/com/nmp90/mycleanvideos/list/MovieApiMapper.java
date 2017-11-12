@@ -7,11 +7,15 @@ import javax.inject.Inject;
  */
 
 public class MovieApiMapper {
+
+    private MovieFactory movieFactory;
+
     @Inject
-    public MovieApiMapper() {
+    public MovieApiMapper(MovieFactory movieFactory) {
+        this.movieFactory = movieFactory;
     }
 
     public Movie toMovie(MovieJson movieJson) {
-        return new Movie(movieJson.getTitle());
+        return movieFactory.toMovie(movieJson.getTitle());
     }
 }
