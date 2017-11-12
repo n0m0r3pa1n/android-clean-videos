@@ -5,6 +5,11 @@ import android.app.Application;
 import com.nmp90.mycleanvideos.api.InteractorSchedulers;
 import com.nmp90.mycleanvideos.api.MoviesApi;
 import com.nmp90.mycleanvideos.api.MoviesApiService;
+import com.nmp90.mycleanvideos.list.ActorsApiService;
+import com.nmp90.mycleanvideos.list.ActorsService;
+import com.nmp90.mycleanvideos.list.MovieApiMapper;
+import com.nmp90.mycleanvideos.list.MoviesApiRepository;
+import com.nmp90.mycleanvideos.list.MoviesRepository;
 
 import javax.inject.Singleton;
 
@@ -46,5 +51,17 @@ public class AppModule {
                 return AndroidSchedulers.mainThread();
             }
         };
+    }
+
+    @Provides
+    @Singleton
+    MoviesRepository providesMoviesRepository(MoviesApiService moviesApiService, MovieApiMapper movieApiMapper) {
+        return new MoviesApiRepository(moviesApiService, movieApiMapper);
+    }
+
+    @Provides
+    @Singleton
+    ActorsService providesActorsService() {
+        return new ActorsApiService();
     }
 }

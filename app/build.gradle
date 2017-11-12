@@ -44,6 +44,7 @@ dependencies {
 
     // UI
     implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.annimon:stream:1.1.9'
 
 
     testImplementation 'junit:junit:4.12'

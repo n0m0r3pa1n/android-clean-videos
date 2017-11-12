@@ -1,5 +1,6 @@
 package com.nmp90.mycleanvideos.di.activity;
 
+import com.nmp90.mycleanvideos.details.DetailsActivity;
 import com.nmp90.mycleanvideos.list.MainActivity;
 
 import dagger.Subcomponent;
@@ -13,4 +14,6 @@ import dagger.Subcomponent;
 public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
+
+    void inject(DetailsActivity detailsActivity);
 }
