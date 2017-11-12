@@ -14,12 +14,14 @@ import io.reactivex.disposables.Disposable;
 public class MoviesPresenter {
 
     private final GetMoviesInteractor getMoviesInteractor;
+    private final MovieUiMapper movieUiMapper;
     private View view;
     private CompositeDisposable compositeDisposable;
 
     @Inject
-    public MoviesPresenter(GetMoviesInteractor getMoviesInteractor) {
+    public MoviesPresenter(GetMoviesInteractor getMoviesInteractor, MovieUiMapper movieUiMapper) {
         this.getMoviesInteractor = getMoviesInteractor;
+        this.movieUiMapper = movieUiMapper;
         compositeDisposable = new CompositeDisposable();
     }
 
@@ -33,11 +35,14 @@ public class MoviesPresenter {
 
     public void searchForMovies(String search) {
         Disposable disposable = getMoviesInteractor.getMovies(search)
+                .flattenAsObservable(movies -> movies)
+                .map(movieUiMapper::toUiMovie)
+                .toList()
                 .subscribe(view::showMovies);
         compositeDisposable.add(disposable);
     }
 
     interface View {
-        void showMovies(List<Movie> movies);
+        void showMovies(List<UiMovie> movies);
     }
 }

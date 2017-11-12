@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
-    private List<Movie> movies = new ArrayList<>();
+    private List<UiMovie> movies = new ArrayList<>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -27,7 +27,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Movie movie = movies.get(position);
+        UiMovie movie = movies.get(position);
         holder.title.setText(movie.getTitle());
     }
 
@@ -36,7 +36,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
         return movies.size();
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(List<UiMovie> movies) {
         this.movies = movies;
         notifyDataSetChanged();
     }

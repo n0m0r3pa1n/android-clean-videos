@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MoviesPresenter.V
     }
 
     @Override
-    public void showMovies(List<Movie> movies) {
+    public void showMovies(List<UiMovie> movies) {
         adapter.setMovies(movies);
     }
 }
