@@ -17,12 +17,26 @@ import java.util.List;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder> {
 
+    private final MovieClickListener clickListener;
     private List<UiMovie> movies = new ArrayList<>();
+
+    public MoviesAdapter(MovieClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie, parent, false);
-        return new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.title.setOnClickListener(view1 -> {
+            if (viewHolder.getAdapterPosition() == RecyclerView.NO_POSITION) {
+                return;
+            }
+
+            UiMovie selectedMovie = movies.get(viewHolder.getAdapterPosition());
+            clickListener.onMovieClick(selectedMovie);
+        });
+        return viewHolder;
     }
 
     @Override
@@ -39,6 +53,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.ViewHolder
     public void setMovies(List<UiMovie> movies) {
         this.movies = movies;
         notifyDataSetChanged();
+    }
+
+    interface MovieClickListener {
+        void onMovieClick(UiMovie movie);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

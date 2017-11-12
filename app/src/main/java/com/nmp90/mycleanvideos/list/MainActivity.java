@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
+import com.nmp90.mycleanvideos.MovieNavigator;
 import com.nmp90.mycleanvideos.R;
 import com.nmp90.mycleanvideos.utils.InjectHelper;
 
@@ -14,11 +15,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements MoviesPresenter.View {
+public class MainActivity extends AppCompatActivity implements MoviesPresenter.View, MoviesAdapter.MovieClickListener {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Inject
     MoviesPresenter moviesPresenter;
+
+    @Inject
+    MovieNavigator movieNavigator;
 
     private RecyclerView moviesRecyclerView;
     private MoviesAdapter adapter;
@@ -32,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements MoviesPresenter.V
         findViewById(R.id.btn_search).setOnClickListener(this::searchForText);
         moviesRecyclerView = findViewById(R.id.rv_results);
         moviesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapter = new MoviesAdapter();
+        adapter = new MoviesAdapter(this);
         moviesRecyclerView.setAdapter(adapter);
     }
 
@@ -56,5 +60,10 @@ public class MainActivity extends AppCompatActivity implements MoviesPresenter.V
     @Override
     public void showMovies(List<UiMovie> movies) {
         adapter.setMovies(movies);
+    }
+
+    @Override
+    public void onMovieClick(UiMovie movie) {
+        movieNavigator.openMovieDetails(movie.getId());
     }
 }

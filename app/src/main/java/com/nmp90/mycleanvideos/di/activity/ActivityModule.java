@@ -2,6 +2,7 @@ package com.nmp90.mycleanvideos.di.activity;
 
 import android.app.Activity;
 
+import com.nmp90.mycleanvideos.MovieNavigator;
 import com.nmp90.mycleanvideos.api.MoviesApiService;
 import com.nmp90.mycleanvideos.list.ActorsApiService;
 import com.nmp90.mycleanvideos.list.ActorsService;
@@ -22,6 +23,12 @@ public class ActivityModule {
 
     public ActivityModule(Activity activity) {
         this.activity = activity;
+    }
+
+    @Provides
+    @PerActivity
+    MovieNavigator provideMovieNavigator() {
+        return new MovieNavigator(activity);
     }
 
     @Provides

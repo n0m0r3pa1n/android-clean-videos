@@ -13,6 +13,6 @@ public class MovieUiMapper {
     }
 
     public UiMovie toUiMovie(Movie movie) {
-        return new UiMovie(movie.getTitle());
+        return new UiMovie(movie.getId(), movie.getTitle());
     }
 }
