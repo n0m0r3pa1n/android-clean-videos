@@ -2,8 +2,8 @@ package com.nmp90.mycleanvideos.di;
 
 import android.app.Application;
 
-import com.nmp90.mycleanvideos.list.MoviesApi;
-import com.nmp90.mycleanvideos.list.MoviesApiService;
+import com.nmp90.mycleanvideos.api.MoviesApi;
+import com.nmp90.mycleanvideos.api.MoviesApiService;
 
 import javax.inject.Singleton;
 
