@@ -8,6 +8,7 @@ import dagger.Subcomponent;
  * Created by nmp on 12.11.17.
  */
 
+@PerActivity
 @Subcomponent(modules=ActivityModule.class)
 public interface ActivityComponent {
 

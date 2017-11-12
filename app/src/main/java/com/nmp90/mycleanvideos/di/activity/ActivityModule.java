@@ -7,8 +7,6 @@ import com.nmp90.mycleanvideos.list.MovieApiMapper;
 import com.nmp90.mycleanvideos.list.MoviesApiRepository;
 import com.nmp90.mycleanvideos.list.MoviesRepository;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -25,7 +23,7 @@ public class ActivityModule {
     }
 
     @Provides
-    @Singleton
+    @PerActivity
     MoviesRepository providesMoviesRepository(MoviesApiService moviesApiService, MovieApiMapper movieApiMapper) {
         return new MoviesApiRepository(moviesApiService, movieApiMapper);
     }

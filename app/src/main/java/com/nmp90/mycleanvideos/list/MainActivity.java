@@ -2,6 +2,8 @@ package com.nmp90.mycleanvideos.list;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
@@ -18,12 +20,20 @@ public class MainActivity extends AppCompatActivity implements MoviesPresenter.V
     @Inject
     MoviesPresenter moviesPresenter;
 
+    private RecyclerView moviesRecyclerView;
+    private MoviesAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         InjectHelper.getActivityComponent(this).inject(this);
         findViewById(R.id.btn_search).setOnClickListener(this::searchForText);
+        moviesRecyclerView = findViewById(R.id.rv_results);
+        moviesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        adapter = new MoviesAdapter();
+        moviesRecyclerView.setAdapter(adapter);
     }
 
     private void searchForText(View view) {
@@ -45,6 +55,6 @@ public class MainActivity extends AppCompatActivity implements MoviesPresenter.V
 
     @Override
     public void showMovies(List<Movie> movies) {
-
+        adapter.setMovies(movies);
     }
 }
